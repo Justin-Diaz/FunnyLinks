@@ -24,7 +24,7 @@ export default function LinkCard() {
                     <img src={link.ogImageUrl} alt={link.title} />
                     <a href={link.siteUrl} target="_blank" rel="noopener noreferrer">{link.siteUrl}</a>
                 </div>
-            )) : <p>No links available.</p>}
+            )) : <p className="empty_state">No links available.</p>}
         </div>
     )
 }
