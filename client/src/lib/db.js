@@ -22,7 +22,7 @@ export const updateLink = async (id, data) => {
 }
 
 export const getAllLinks = async () => {
-  await db.links.toArray();
+  return await db.links.toArray();
 }
 
 export const deleteLink = async (id) => {

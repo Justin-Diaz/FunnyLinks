@@ -1,19 +1,9 @@
 import "./linkCard.css";
-import useLinkCard from "./useLinkCard";
-import { useEffect, useState } from "react";
+import { useLinkCard, handleDelete } from "./useLinkCard";
 
 export default function LinkCard() {
-    const [links, setLinks] = useState([]);
 
-    useEffect(() => {
-        async function fetchLinks() {
-            const data = await useLinkCard();
-            setLinks(data);
-            console.log(data);
-        }
-        fetchLinks();
-    }, [])
-
+    const links = useLinkCard()
 
     return (
         <div className="link_card">
@@ -23,6 +13,7 @@ export default function LinkCard() {
                     <p>{link.description}</p>
                     <img src={link.ogImageUrl} alt={link.title} />
                     <a href={link.siteUrl} target="_blank" rel="noopener noreferrer">{link.siteUrl}</a>
+                    <button onClick={() => handleDelete(link.id)}>Delete</button>
                 </div>
             )) : <p className="empty_state">No links available.</p>}
         </div>

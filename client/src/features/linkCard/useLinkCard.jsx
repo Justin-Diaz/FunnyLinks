@@ -1,11 +1,10 @@
-import { getAllLinks } from "../../lib/db";
+import { useLiveQuery } from 'dexie-react-hooks';
+import { getAllLinks, deleteLink } from '../../lib/db';
 
-export default async function useLinkCard() {
-    try {
-        const links = await getAllLinks();
-        return links;
-    } catch (error) {
-        console.error("Error fetching links:", error);
-        return [];
-    }
+export function useLinkCard() {
+    return useLiveQuery(() => getAllLinks());
+}
+
+export function handleDelete(id) {
+    return deleteLink(id)
 }
