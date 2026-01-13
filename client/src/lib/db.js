@@ -7,7 +7,7 @@ db.version(1).stores({
   links: '++id, title, description, ogImageUrl, siteUrl',
 });
 
-export const addLink = async (url) => {
+export const createLink = async (url) => {
   const ogData = await ogScraper(url);
   await db.links.add({
     title: ogData.ogTitle || "Sin título",
@@ -21,7 +21,7 @@ export const updateLink = async (id, data) => {
   await db.links.update(id, data);
 }
 
-export const getAllLinks = async () => {
+export const getLinks = async () => {
   return await db.links.toArray();
 }
 

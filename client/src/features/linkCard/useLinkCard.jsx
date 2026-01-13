@@ -1,10 +1,23 @@
-import { useLiveQuery } from 'dexie-react-hooks';
-import { getAllLinks, deleteLink } from '../../lib/db';
+import { useLiveQuery } from "dexie-react-hooks";
+import { getLinks, deleteLink, createLink, updateLink } from "../../lib/db";
 
-export function useLinkCard() {
-    return useLiveQuery(() => getAllLinks());
-}
+export default function useLinkCard() {
+  const links = useLiveQuery(() => getLinks(), []);
 
-export function handleDelete(id) {
-    return deleteLink(id)
+  const handleCreate = async (url) => {
+    await createLink(url);
+  };
+
+  const handleUpdate = async (id, data) => {
+    await updateLink(id, {
+      title: data.title,
+      description: data.description
+    });
+  };
+
+  const handleDelete = async (id) => {
+    await deleteLink(id);
+  };
+
+  return { links, handleCreate, handleUpdate, handleDelete };
 }

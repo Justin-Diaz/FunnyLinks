@@ -14,7 +14,7 @@ router.get('/', async (req, res) => {
         const { result } = await ogs({ url });
         res.json(result);
     } catch (err) {
-        res.status(500).json({ error: 'No se pudo obtener OG' });
+        res.status(500).json({ error: 'No se pudo obtener OG: ', err });
     }
 });
 
